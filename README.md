@@ -4,6 +4,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 `npx create-react-app react-lightweight-charts`
 
+tradingview / [lightweight-charts](https://github.com/tradingview/lightweight-charts)
+
+## Knowledge Node
+
+[addCandlestickSeries()](https://github.com/tradingview/lightweight-charts/blob/master/docs/candlestick-series.md)
+
+[useRef](https://zh-hant.reactjs.org/docs/hooks-reference.html#useref)
+
 ## Available Scripts
 
 In the project directory, you can run:
