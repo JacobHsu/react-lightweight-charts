@@ -5,6 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 `npx create-react-app react-lightweight-charts`
 
 tradingview / [lightweight-charts](https://github.com/tradingview/lightweight-charts)
+Volume study 
 
 ## Knowledge Node
 
