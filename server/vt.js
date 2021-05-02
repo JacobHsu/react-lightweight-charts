@@ -3,6 +3,7 @@ const cors = require('cors')
 const app = express()
 const router = express.Router()
 const yahooFinance = require('yahoo-finance') // https://www.npmjs.com/package/yahoo-finance
+const moment = require('moment')
 var _ = require('lodash');
 
 const d = new Date();
@@ -20,7 +21,11 @@ var historical = function (symbol, from, to, callback) {
       to: to,
       // period: 'd'  // 'd' (daily), 'w' (weekly), 'm' (monthly), 'v' (dividends only)
     },
-    function (err, quotes) {      
+    function (err, quotes) {     
+      quotes =  quotes.map((obj) => {
+        if(obj.date) obj.time = moment(obj.date).format('yyyy-MM-DD')
+        return obj
+      })
       callback(null, quotes)
     }
   )
@@ -34,6 +39,9 @@ historical('VT', twoWeeksAgo, today, function(error, result) {
 
 app.use('/api', router)
 
+app.use(cors())
+
+// Enable CORS for a Single Route
 router.get('/vt', cors(), function (req, res) {
   res.json({
     errno: 0,

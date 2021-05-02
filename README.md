@@ -7,6 +7,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 tradingview / [lightweight-charts](https://github.com/tradingview/lightweight-charts)
 Volume study 
 
+[輕量圖表](https://tw.tradingview.com/lightweight-charts/)  
+[系列標記](https://jsfiddle.net/TradingView/nd80cx1a/)
+
 ## Knowledge Node
 
 [addCandlestickSeries()](https://github.com/tradingview/lightweight-charts/blob/master/docs/candlestick-series.md)
