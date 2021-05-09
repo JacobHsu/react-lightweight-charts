@@ -23,9 +23,15 @@ var historical = function (symbol, from, to, callback) {
     },
     function (err, quotes) {     
       quotes =  quotes.map((obj) => {
-        if(obj.date) obj.time = moment(obj.date).format('yyyy-MM-DD')
+        if(obj.date) obj.time =  moment(obj.date).format('yyyy-MM-DD') // Date.parse(obj.date)
+
+        delete obj.symbol
+        delete obj.date
+        delete obj.adjClose
+        delete obj.volume
         return obj
       })
+      quotes.reverse(); // 重要! lightweight-charts 日期要小到大排序
       callback(null, quotes)
     }
   )
