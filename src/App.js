@@ -402,24 +402,49 @@ const kline = ( chartContainerRef, kdata ) => {
   // ];
 
   series.setData(kdata);
+
+  let data = kdata
+  var smaData = calculateSMA(data, 10);
+  var smaLine = chart.addLineSeries({
+    color: 'rgba(4, 111, 232, 1)',
+    lineWidth: 2,
+  });
+  smaLine.setData(smaData);
+
+  function calculateSMA(data, count){
+    var avg = function(data) {
+      var sum = 0;
+      for (var i = 0; i < data.length; i++) {
+         sum += data[i].close;
+      }
+      return sum / data.length;
+    };
+    var result = [];
+    for (var i=count - 1, len=data.length; i < len; i++){
+      var val = avg(data.slice(i - count + 1, i));
+      result.push({ time: data[i].time, value: val});
+    }
+    return result;
+  }
+
   
-  // var datesForMarkers = [data[data.length - 19], data[data.length - 39]];
-  // var indexOfMinPrice = 0;
-  // for (var i = 1; i < datesForMarkers.length; i++) {
-  //   if (datesForMarkers[i].high < datesForMarkers[indexOfMinPrice].high) {
-  //     indexOfMinPrice = i;
-  //   }
-  // }
-  // var markers = [];
-  // for (var i = 0; i < datesForMarkers.length; i++) {
-  //   if (i !== indexOfMinPrice) {
-  //     markers.push({ time: datesForMarkers[i].time, position: 'aboveBar', color: '#e91e63', shape: 'arrowDown', text: 'Sell @ ' + Math.floor(datesForMarkers[i].high + 2) });
-  //   } else {
-  //     markers.push({ time: datesForMarkers[i].time, position: 'belowBar', color: '#2196F3', shape: 'arrowUp', text: 'Buy @ ' + Math.floor(datesForMarkers[i].low - 2) });
-  //   }
-  // }
-  // markers.push({ time: data[data.length - 48].time, position: 'aboveBar', color: '#f68410', shape: 'circle', text: 'D' });
-  // series.setMarkers(markers);
+  var datesForMarkers = [kdata[kdata.length - 10], kdata[kdata.length - 31]];
+  var indexOfMinPrice = 0;
+  for (var i = 1; i < datesForMarkers.length; i++) {
+    if (datesForMarkers[i].high < datesForMarkers[indexOfMinPrice].high) {
+      indexOfMinPrice = i;
+    }
+  }
+  var markers = [];
+  for (var i = 0; i < datesForMarkers.length; i++) {
+    if (i !== indexOfMinPrice) {
+      markers.push({ time: datesForMarkers[i].time, position: 'aboveBar', color: '#e91e63', shape: 'arrowDown', text: 'Sell @ ' + Math.floor(datesForMarkers[i].high + 2) });
+    } else {
+      markers.push({ time: datesForMarkers[i].time, position: 'belowBar', color: '#2196F3', shape: 'arrowUp', text: 'Buy @ ' + Math.floor(datesForMarkers[i].low - 2) });
+    }
+  }
+  markers.push({ time: kdata[kdata.length - 48].time, position: 'aboveBar', color: '#f68410', shape: 'circle', text: 'D' });
+  series.setMarkers(markers);
 }
 
 function App() {

@@ -9,7 +9,7 @@ var _ = require('lodash');
 const d = new Date();
 const today = d.toISOString().substring(0, 10);
 
-let twoWeeksAgo = d.setDate(d.getDate() - 14);
+let twoWeeksAgo = d.setDate(d.getDate() - 365);
 twoWeeksAgo = new Date(twoWeeksAgo).toISOString().substring(0, 10);;
 
 
@@ -38,7 +38,8 @@ var historical = function (symbol, from, to, callback) {
 }
 
 let retJSON = {}
-historical('VT', twoWeeksAgo, today, function(error, result) {
+// 'VT' 2330.TW 2603.TW 長榮
+historical('2603.TW', twoWeeksAgo, today, function(error, result) {
     retJSON = result
 }) 
 

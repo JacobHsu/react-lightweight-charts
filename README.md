@@ -8,7 +8,8 @@ tradingview / [lightweight-charts](https://github.com/tradingview/lightweight-ch
 Volume study 
 
 [輕量圖表](https://tw.tradingview.com/lightweight-charts/)  
-[系列標記](https://jsfiddle.net/TradingView/nd80cx1a/)
+[系列標記](https://jsfiddle.net/TradingView/nd80cx1a/)  
+[均線](https://jsfiddle.net/TradingView/537kjtfg/)
 
 ## Knowledge Node
 
