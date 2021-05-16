@@ -411,6 +411,28 @@ const kline = ( chartContainerRef, kdata ) => {
   });
   smaLine.setData(smaData);
 
+
+  var container = document.createElement('div');
+  document.body.appendChild(container);
+  var legend = document.createElement('div');
+  legend.className = 'sma-legend';
+  container.appendChild(legend);
+  legend.style.display = 'block';
+  legend.style.left = 660 + 'px';
+  legend.style.top = 250 + 'px';
+  function setLegendText(priceValue) {
+    let val = 'n/a';
+    if (priceValue !== undefined) {
+      val = (Math.round(priceValue * 100) / 100).toFixed(2);
+    }
+    legend.innerHTML = 'MA10 <span style="color:rgba(4, 111, 232, 1)">' + val + '</span>';
+  }
+  setLegendText(smaData[smaData.length - 1].value);
+
+  chart.subscribeCrosshairMove((param) => {
+    setLegendText(param.seriesPrices.get(smaLine));
+  });
+
   function calculateSMA(data, count){
     var avg = function(data) {
       var sum = 0;
