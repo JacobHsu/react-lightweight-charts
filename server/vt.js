@@ -21,23 +21,29 @@ var historical = function (symbol, from, to, callback) {
       to: to,
       // period: 'd'  // 'd' (daily), 'w' (weekly), 'm' (monthly), 'v' (dividends only)
     },
-    function (err, quotes) {     
-      quotes =  quotes.map((obj) => {
+    function (err, quotes) {
+
+      quotes.reverse(); // 重要! lightweight-charts 日期要小到大排序
+      
+      const candlestickSeries =  quotes.map((obj) => {
         if(obj.date) obj.time =  moment(obj.date).format('yyyy-MM-DD') // Date.parse(obj.date)
 
         delete obj.symbol
         delete obj.date
         delete obj.adjClose
+
+        if(obj.volume) obj.volumeS = { time: obj.time, value: obj.volume }
         delete obj.volume
+
         return obj
       })
-      quotes.reverse(); // 重要! lightweight-charts 日期要小到大排序
+      
       callback(null, quotes)
     }
   )
 }
 
-let retJSON = {}
+let retJSON = {}, retVolumeSeries = {}
 // 'VT' 2330.TW 2603.TW 長榮
 historical('2603.TW', twoWeeksAgo, today, function(error, result) {
     retJSON = result
@@ -52,7 +58,7 @@ app.use(cors())
 router.get('/vt', cors(), function (req, res) {
   res.json({
     errno: 0,
-    etf: retJSON,
+    etf: retJSON
   })
 })
 
