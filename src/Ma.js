@@ -58,8 +58,8 @@ const kline = ( chartContainerRef, kdata ) => {
   legend.className = 'sma-legend';
   container.appendChild(legend);
   legend.style.display = 'block';
-  legend.style.left = '28%'; // 660 + 'px';
-  legend.style.top = '16%'; // 250 + 'px';
+  legend.style.left = window.screen.width * 0.28 +'px';
+  legend.style.top = window.screen.height * 0.21 +'px';
   function setLegendText(priceValue) {
     let val = 'n/a';
     if (priceValue !== undefined) {
@@ -113,7 +113,7 @@ function App() {
   const chartContainerRef = useRef();
   useEffect(() => {
     getStock().then( res =>{
-      kline(chartContainerRef, res.etf)
+      kline(chartContainerRef, res.candlestickSeries)
     })
 
   })

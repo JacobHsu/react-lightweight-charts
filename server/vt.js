@@ -24,21 +24,28 @@ var historical = function (symbol, from, to, callback) {
     function (err, quotes) {
 
       quotes.reverse(); // 重要! lightweight-charts 日期要小到大排序
-      
-      const candlestickSeries =  quotes.map((obj) => {
+      const candlestickSeries =  []
+      const volumeSeries =  []
+      quotes.map((obj) => {
         if(obj.date) obj.time =  moment(obj.date).format('yyyy-MM-DD') // Date.parse(obj.date)
 
         delete obj.symbol
         delete obj.date
         delete obj.adjClose
 
-        if(obj.volume) obj.volumeS = { time: obj.time, value: obj.volume }
+        if(obj.volume) obj.volumeSeries = { time: obj.time, value: obj.volume }
+        candlestickSeries.push( { open: obj.open, high: obj.high, low: obj.low , close: obj.close , time: obj.time } ) 
+        volumeSeries.push({ time: obj.time, value: obj.volume } )
         delete obj.volume
 
         return obj
       })
       
-      callback(null, quotes)
+      const ret = {}
+      ret.quotes = quotes
+      ret.candlestickSeries = candlestickSeries
+      ret.volumeSeries = volumeSeries
+      callback(null, ret)
     }
   )
 }
@@ -58,7 +65,9 @@ app.use(cors())
 router.get('/vt', cors(), function (req, res) {
   res.json({
     errno: 0,
-    etf: retJSON
+    etf: retJSON.quotes,
+    candlestickSeries: retJSON.candlestickSeries,
+    volumeSeries: retJSON.volumeSeries
   })
 })
 
