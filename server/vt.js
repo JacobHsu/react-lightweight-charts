@@ -35,14 +35,14 @@ var historical = function (symbol, from, to, callback) {
 
         if(obj.volume) obj.volumeSeries = { time: obj.time, value: obj.volume }
         candlestickSeries.push( { open: obj.open, high: obj.high, low: obj.low , close: obj.close , time: obj.time } ) 
-        volumeSeries.push({ time: obj.time, value: obj.volume } )
+        volumeSeries.push({ time: obj.time, value: obj.volume, color: 'gray' } )
         delete obj.volume
 
         return obj
       })
       
       const ret = {}
-      ret.quotes = quotes
+      // ret.quotes = quotes
       ret.candlestickSeries = candlestickSeries
       ret.volumeSeries = volumeSeries
       callback(null, ret)
