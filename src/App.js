@@ -30,10 +30,12 @@ const volumeSeries = (chartContainerRef, candlesData, volumeData) => {
   candlestickSeries.setData(candlesData);
 
   var volumeSeries = chart.addHistogramSeries({
-    color: '#26a69a',
+    color: '#192436',
+    lineWidth: 2,
     priceFormat: {
       type: 'volume',
     },
+    overlay: true,
     priceScaleId: '',
     scaleMargins: {
       top: 0.8,
