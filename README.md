@@ -19,6 +19,8 @@ Volume study
 
 ## Samples
 
+[candlestick](https://codesandbox.io/s/tradingview-lightweight-candlestick-9inkb?from-embed=&file=/src/index.js)
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { createChart } from 'lightweight-charts';
+import { maxBy, minBy } from 'lodash'
 import './App.css';
 import {getStock} from "./api"
 
@@ -29,6 +30,35 @@ const volumeSeries = (chartContainerRef, candlesData, volumeData) => {
   });
   candlestickSeries.setData(candlesData);
 
+  // const candleHigh = maxBy(candlesData,'high')
+  // const high = candleHigh.high
+  // const candleLow = minBy(candlesData,'low')
+  // const low = candleLow.low
+
+  var smaData = calculateSMA(candlesData, 10);
+  var smaLine = chart.addLineSeries({
+    color: 'rgba(4, 111, 232, 1)',
+    lineWidth: 2,
+  });
+  smaLine.setData(smaData);
+
+  function calculateSMA(data, count){
+    var avg = function(data) {
+      var sum = 0;
+      for (var i = 0; i < data.length; i++) {
+         sum += data[i].close;
+      }
+      return sum / data.length;
+    };
+    var result = [];
+    for (var i=count - 1, len=data.length; i < len; i++){
+      var val = avg(data.slice(i - count + 1, i));
+      result.push({ time: data[i].time, value: val});
+    }
+    return result;
+  }
+
+
   var volumeSeries = chart.addHistogramSeries({
     color: '#192436',
     lineWidth: 2,
@@ -52,7 +82,6 @@ function App() {
     getStock().then( res =>{
       volumeSeries(chartContainerRef, res.candlestickSeries, res.volumeSeries)
     })
-
   })
 
   return (
