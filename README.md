@@ -11,6 +11,11 @@ Volume study
 [系列標記](https://jsfiddle.net/TradingView/nd80cx1a/)  
 [均線](https://jsfiddle.net/TradingView/537kjtfg/)
 
+## series-basics
+
+lightweight-charts/docs/series-basics.md
+volume [Histogram series](https://github.com/tradingview/lightweight-charts/blob/master/docs/histogram-series.md) 直方圖
+
 ## Knowledge Node
 
 [addCandlestickSeries()](https://github.com/tradingview/lightweight-charts/blob/master/docs/candlestick-series.md)
