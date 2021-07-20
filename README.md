@@ -26,6 +26,13 @@ volume [Histogram series](https://github.com/tradingview/lightweight-charts/blob
 
 [candlestick](https://codesandbox.io/s/tradingview-lightweight-candlestick-9inkb?from-embed=&file=/src/index.js)
 
+## submodule
+
+`git submodule add https://github.com/JacobHsu/react-lightweight-server.git backend-server`  
+`cd backend-server> npm i`
+`git submodule init`  
+`git submodule update`  
+
 ## Available Scripts
 
 In the project directory, you can run:

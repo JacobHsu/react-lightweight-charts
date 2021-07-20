@@ -15,8 +15,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "s": "npm-run-all -p start server",
+    "s": "npm-run-all -p start backend-server",
     "start": "react-scripts start",
+    "backend-server": "node ./backend-server/api/index.js",
     "server": "node ./server/vt",
     "build": "react-scripts build",
     "test": "react-scripts test",

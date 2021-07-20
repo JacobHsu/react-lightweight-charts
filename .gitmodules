@@ -1,0 +1,6 @@
+[submodule "backend"]
+	path = backend
+	url = https://github.com/JacobHsu/react-lightweight-server.git
+[submodule "backend-server"]
+	path = backend-server
+	url = https://github.com/JacobHsu/react-lightweight-server.git

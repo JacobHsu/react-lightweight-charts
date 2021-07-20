@@ -80,7 +80,7 @@ function App() {
   const chartContainerRef = useRef();
   useEffect(() => {
     getStock().then( res =>{
-      volumeSeries(chartContainerRef, res.candlestickSeries, res.volumeSeries)
+      volumeSeries(chartContainerRef, res.result.candlestickSeries, res.result.volumeSeries)
     })
   })
 
