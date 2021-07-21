@@ -33,6 +33,10 @@ volume [Histogram series](https://github.com/tradingview/lightweight-charts/blob
 `git submodule init`  
 `git submodule update`  
 
+## npms
+
+[env-cmd](https://github.com/toddbluhm/env-cmd#readme)
+
 ## Available Scripts
 
 In the project directory, you can run:
