@@ -23,6 +23,7 @@
     "backend-server": "node ./backend-server/api/index.js",
     "server": "node ./server/vt",
     "build": "env-cmd -e prod react-scripts build",
+    "local": "serve build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
