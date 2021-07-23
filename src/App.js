@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { createChart } from 'lightweight-charts';
-import { maxBy, minBy } from 'lodash'
+// import { maxBy, minBy } from 'lodash'
 import './App.css';
 import {getStock} from "./api"
 
