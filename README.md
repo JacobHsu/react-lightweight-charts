@@ -11,6 +11,9 @@ Volume study
 [系列標記](https://jsfiddle.net/TradingView/nd80cx1a/)  
 [均線](https://jsfiddle.net/TradingView/537kjtfg/)
 
+
+widget [symbol-overview](https://tw.tradingview.com/widget/symbol-overview/)  
+
 ## series-basics
 
 lightweight-charts/docs/series-basics.md
